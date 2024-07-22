@@ -14,21 +14,22 @@ const App = () => {
   const result = useQuery({
     queryKey: ['anecdotes'],
     queryFn: getAnecdotes,
-    retry: false
+    retry: false,
+    // staleTime: Infinity //para que no ande recargando el frontend con los mismos datos
   })
   console.log(JSON.parse(JSON.stringify(result)))
 
-  if (result.status === "pending") {
+  if (result.status === "pending")
     return <span>Pending</span>
-  }
 
-  if (result.status === "error") {
+
+  if (result.status === "error")
     return <span>Anecdote service error </span>
-  }
 
-  // if (result.status === "success") {
+
+  // if (result.status === "success")
   //   return <span>success </span>
-  // }
+
 
   const anecdotes = result.data
 
@@ -55,4 +56,3 @@ const App = () => {
 }
 
 export default App
-// 6.20
